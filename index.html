@@ -10,26 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-
-<!-- SEO Tags -->
- <title>Gamepad Tester WEB por El Taller de Alex</title>
- <meta name="description" content="Prueba tus controles y dispositivos de entrada con el Gamepad Tester de El Taller de Alex SIN ANUNCIOS. Verifica el estado de los botones, joysticks y triggers en tiempo real. SIN ANUNCIOS">
- <meta name="keywords" content="Gamepad Tester, probar control, verificar gamepad, botones de control, Joysticks, dispositivos de entrada, El Taller de Alex, control Xbox, control PS4, control PS5, control gaming, herramientas para gamers">
- <meta name="author" content="El Taller de Alex">
-
- <!-- Open Graph / Facebook -->
- <meta property="og:title" content="Gamepad Tester - El Taller de Alex">
- <meta property="og:description" content="Prueba tus controles y dispositivos de entrada con el Gamepad Tester de El Taller de Alex SIN ANUNCIOS. Verifica el estado de los botones, joysticks y triggers en tiempo real. SIN ANUNCIOS">
- <meta property="og:type" content="website">
- <meta property="og:url" content="https://www.eltallerdealex.com.mx/gamepad_tester">
- <meta property="og:image" content="assets/img/banner.png">
-
- <!-- Twitter -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Gamepad Tester - El Taller de Alex">
- <meta name="twitter:description" content="Prueba tus controles y dispositivos de entrada con el Gamepad Tester de El Taller de Alex SIN ANUNCIOS. Verifica el estado de los botones, joysticks y triggers en tiempo real. SIN ANUNCIOS">
- <meta name="twitter:image" content="assets/img/banner.png">
+  <title>Gamepad Tester</title>
 
  <!-- Favicon -->
 <link rel="icon" type="/image/png" href="static/gamepad.png" sizes="64x64">
@@ -234,6 +215,240 @@ input:checked + .slider:before {
     user-select: none;
   }
 
+  :root {
+    --bg: #07111f;
+    --bg-accent: #0d1b2d;
+    --panel: rgba(12, 24, 40, 0.88);
+    --text: #e7f0ff;
+    --muted: #99adc7;
+    --line: rgba(148, 180, 217, 0.18);
+    --primary: #50b4ff;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(80, 180, 255, 0.16), transparent 30%),
+      linear-gradient(180deg, #050c16 0%, #08111d 35%, #0b1624 100%);
+    color: var(--text);
+  }
+
+  .app-shell {
+    width: min(1280px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+  }
+
+  .app-hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 22px;
+    padding: 28px clamp(280px, 27vw, 390px) 28px 28px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(21, 41, 68, 0.95), rgba(8, 20, 36, 0.9));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .app-hero::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    bottom: -100px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(80, 180, 255, 0.22), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-topline {
+    display: inline-flex;
+    padding: 8px 14px;
+    border: 1px solid rgba(80, 180, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(80, 180, 255, 0.08);
+    color: #b7dfff;
+    font-size: 0.9rem;
+  }
+
+  .app-hero h1 {
+    margin: 16px 0 10px;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 0.95;
+    color: #ffffff;
+  }
+
+  .app-hero p {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .hero-description {
+    margin-bottom: 8px;
+    max-width: 980px;
+    color: #eaf4ff;
+    font-size: 1.45rem;
+  }
+
+  .hero-credit {
+    margin-top: 0;
+    color: #9fb4cf;
+    font-size: 0.92rem;
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: 50%;
+    right: clamp(24px, 4vw, 58px);
+    z-index: 1;
+    width: clamp(210px, 20vw, 300px);
+    max-height: calc(100% - 42px);
+    object-fit: contain;
+    transform: translateY(-50%);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.32));
+  }
+
+  .hero-card,
+  .status-pill,
+  .footer-tag {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-card {
+    padding: 12px 16px;
+    border-radius: 16px;
+  }
+
+  .hero-card strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #ffffff;
+  }
+
+  .hero-card span {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .hud-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .status-pill {
+    padding: 10px 14px;
+    border-radius: 14px;
+    color: var(--muted);
+  }
+
+  .instructions {
+    margin-bottom: 18px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+  }
+
+  #gamepads > * {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    backdrop-filter: blur(8px);
+  }
+
+  .head .index,
+  .head .id,
+  .axes > div,
+  .buttons > div {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+  }
+
+  .infos {
+    flex-wrap: wrap;
+  }
+
+  .vib-button {
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.12);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .vib-button:hover {
+    color: var(--bg-accent);
+  }
+
+  #oscilloscope {
+    margin-top: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+  }
+
+  .footer-tag {
+    width: fit-content;
+    margin: 22px auto 0;
+    padding: 10px 16px;
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  .controller-visual {
+    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.28));
+  }
+
+  .buttons > div {
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  }
+
+  .buttons > div.button-active {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 0 22px rgba(80, 180, 255, 0.18);
+    background: rgba(80, 180, 255, 0.1);
+  }
+
+  @media (max-width: 900px) {
+    .app-shell {
+      width: min(100% - 24px, 100%);
+    }
+
+    .app-hero {
+      padding: 22px;
+    }
+
+    .hero-logo {
+      position: relative;
+      top: auto;
+      right: auto;
+      display: block;
+      width: min(260px, 80%);
+      max-height: none;
+      margin: 20px auto 0;
+      transform: none;
+    }
+
+    .hero-description {
+      font-size: 1.12rem;
+    }
+
+    .inputs {
+      flex-direction: column;
+    }
+  }
+
 </style>
 
 
@@ -243,17 +458,29 @@ input:checked + .slider:before {
 
 <body>
 
+  <div class="app-shell">
+    <section class="app-hero">
+      <div class="hero-content">
+        <div class="hero-topline">Pixel Ortiz Tech</div>
+        <h1>Gamepad Tester</h1>
+        <p class="hero-description">Servicio de reparacion de computadoras - Videojuegos - Tienda de telefonia Celular<br>Honestidad y profesionalismo en cada servicio. Comprometido con soluciones de calidad.</p>
+        <p class="hero-credit">Software adaptado por Jared Mendez.</p>
+      </div>
+      <img class="hero-logo" src="assets/img/pixel-ortiz-tech-logo.png" alt="Pixel Ortiz Tech" onerror="this.style.display='none'">
+    </section>
+  </div>
+
 
 
   <!--
 
-    Gamepad Tester - Creado por El Taller de Alex
+    Gamepad Tester - Creado por Pixel Ortiz Tech
 
     Este programa está disponible para su uso, modificación y redistribución, y ha sido diseñado con dedicación para ayudar a quienes necesiten probar sus controles.
     Al redistribuir o modificar este programa, considera la importancia de reconocer el trabajo y el esfuerzo dedicados para que herramientas como esta estén al alcance de todos.
 
     Te pedimos amablemente que incluyas el siguiente crédito:
-    "Creado por El Taller de Alex - https://eltallerdealex.com.mx"
+    "Creado por Pixel Ortiz Tech - https://pixelortiztech.local"
 
     Al dar crédito, ayudas a otros a conocer el origen de esta herramienta y fomentas una cultura de colaboración y respeto en la comunidad.
 
@@ -344,8 +571,6 @@ input:checked + .slider:before {
 <!-- Cotizador de reparaciones -->
 
 <div style="display:flex; flex-direction:row; gap:1rem;" class="">
-  <p>¿Necesitas cotizar una reparación? <strong>prueba nuestro cotizador</strong></p>
-  <button id="cotizar" onclick="cotizador()" type="button" name="button">Abrir cotizador</button>
 </div>
 
 
@@ -355,7 +580,7 @@ input:checked + .slider:before {
 </div>
 <div id="gamepads"></div>
 
-  <iframe id="oscilloscope" src="/gamepad-tester/osc.html" width="100%" height="500" frameborder="0" style="overflow: hidden; display: none;"></iframe>
+  <iframe id="oscilloscope" src="osc.html" width="100%" height="500" frameborder="0" style="overflow: hidden; display: none;"></iframe>
 
   <!---
 
@@ -433,8 +658,6 @@ const fudgeFactor = 2;
 const runningElem = document.querySelector('#running');
 const gamepadsElem = document.querySelector('#gamepads');
 const gamepadsByIndex = {};
-const controllerF = "R2FtZXBhZCBUZXN0ZXIgV0VCIHBvciBFbCBUYWxsZXIgZGUgQWxleA=="
-const controllerT = "KEMpIDIwMjQgRWwgVGFsbGVyIGRlIEFsZXg="
 
 const controllerTemplate = `
 <div>
@@ -523,24 +746,163 @@ const slider = `<div class="switch-container">
 </div>
 `;
 
-// ETA - Para que funcione con todos los controles de PS
-function getC(address) {
-  return atob(address);
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function buttonColor(index, pressed, value) {
+  const intensity = clamp(value, 0, 1);
+  const active = {
+    0: `rgba(75, 225, 120, ${0.35 + intensity * 0.65})`,
+    1: `rgba(255, 95, 95, ${0.35 + intensity * 0.65})`,
+    2: `rgba(80, 165, 255, ${0.35 + intensity * 0.65})`,
+    3: `rgba(255, 210, 70, ${0.35 + intensity * 0.65})`,
+    4: `rgba(130, 245, 255, ${0.3 + intensity * 0.6})`,
+    5: `rgba(130, 245, 255, ${0.3 + intensity * 0.6})`,
+    6: `rgba(255, 145, 64, ${0.35 + intensity * 0.65})`,
+    7: `rgba(255, 145, 64, ${0.35 + intensity * 0.65})`,
+    8: `rgba(190, 140, 255, ${0.3 + intensity * 0.6})`,
+    9: `rgba(190, 140, 255, ${0.3 + intensity * 0.6})`,
+    10: `rgba(255, 255, 255, ${0.35 + intensity * 0.5})`,
+    11: `rgba(255, 255, 255, ${0.35 + intensity * 0.5})`,
+    12: `rgba(80, 180, 255, ${0.35 + intensity * 0.65})`,
+    13: `rgba(80, 180, 255, ${0.35 + intensity * 0.65})`,
+    14: `rgba(80, 180, 255, ${0.35 + intensity * 0.65})`,
+    15: `rgba(80, 180, 255, ${0.35 + intensity * 0.65})`,
+    16: `rgba(255, 255, 255, ${0.35 + intensity * 0.5})`,
+  };
+
+  if (pressed || intensity > 0.05) {
+    return active[index] || `rgba(80, 180, 255, ${0.3 + intensity * 0.6})`;
+  }
+
+  return 'rgba(255,255,255,0.08)';
+}
+
+function setSvgButtonState(element, value, color) {
+  if (!element) return;
+  const alpha = clamp(value, 0, 1);
+  element.setAttribute('fill', color.replace(/[\d.]+\)$/g, `${0.18 + alpha * 0.82})`));
+  element.setAttribute('stroke', color.replace(/[\d.]+\)$/g, `${0.65 + alpha * 0.35})`));
+  element.style.filter = alpha > 0.05 ? `drop-shadow(0 0 ${8 + alpha * 18}px ${color})` : 'none';
+}
+
+let trackingEnabled = true;
+let gamepadConnected = false;
+
+function getGamepadSignature(gamepad) {
+  const match = gamepad.id.match(/Vendor:\s*([0-9a-f]{4}).*Product:\s*([0-9a-f]{4})/i);
+  if (match) {
+    return `${match[1].toLowerCase()}:${match[2].toLowerCase()}`;
+  }
+
+  return gamepad.id
+    .toLowerCase()
+    .replace(/\(.*?\)/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function scoreGamepad(gamepad) {
+  let score = 0;
+  const effects = gamepad.vibrationActuator?.effects || [];
+  if (gamepad.connected) score += 100;
+  if (gamepad.mapping === 'standard') score += 20;
+  if (gamepad.vibrationActuator) score += 60;
+  if (effects.includes('trigger-rumble')) score += 40;
+  if (effects.includes('dual-rumble')) score += 20;
+  if (/dualsense wireless controller/i.test(gamepad.id)) score += 40;
+  if (/wireless controller/i.test(gamepad.id) && !/dualsense wireless controller/i.test(gamepad.id)) score += 12;
+  if (/ps5 controller/i.test(gamepad.id)) score -= 25;
+  score += gamepad.buttons.length;
+  score += gamepad.axes.length * 2;
+  return score;
+}
+
+function getPreferredGamepads() {
+  const rawGamepads = Array.from(navigator.getGamepads?.() || []).filter(Boolean);
+  const dualSenseSignatures = new Set(
+    rawGamepads
+      .filter((gamepad) => /dualsense wireless controller/i.test(gamepad.id))
+      .map((gamepad) => getGamepadSignature(gamepad))
+  );
+  const filteredGamepads = rawGamepads.filter((gamepad) => {
+    if (/ps5 controller/i.test(gamepad.id) && dualSenseSignatures.has(getGamepadSignature(gamepad))) {
+      return false;
+    }
+    return true;
+  });
+  const grouped = new Map();
+
+  filteredGamepads.forEach((gamepad) => {
+    const signature = getGamepadSignature(gamepad);
+    const current = grouped.get(signature);
+    if (!current || scoreGamepad(gamepad) > scoreGamepad(current)) {
+      grouped.set(signature, gamepad);
+    }
+  });
+
+  return Array.from(grouped.values()).sort((a, b) => a.index - b.index);
+}
+
+function getPrimaryGamepad() {
+  return getPreferredGamepads()[0] || null;
+}
+
+function updateTrackingStatusMessage() {
+  const connectLabel = document.getElementById('conectar');
+  if (!connectLabel) return;
+
+  connectLabel.textContent = gamepadConnected
+    ? 'Tracking activo. Presiona los botones y mueve los sticks para ver la respuesta en pantalla.'
+    : 'Conecta un gamepad y presiona sus botones para que aparezca en pantalla.';
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  const dT = getC(controllerF);
-  const dText = getC(controllerT);
-  if (document.title !== dT) {
-    console.log(document.title)
-    console.log(dT)
-    document.title += " - " + dText;
+  const shell = document.querySelector('.app-shell');
+  const runningWrapper = document.getElementById('running')?.parentElement;
+  if (shell && runningWrapper) {
+    const hudRow = document.createElement('div');
+    hudRow.className = 'hud-row';
+    const brandPill = document.createElement('div');
+    brandPill.className = 'status-pill';
+    brandPill.textContent = 'Pixel Ortiz Tech';
+    runningWrapper.className = 'status-pill';
+    runningWrapper.after(brandPill);
+    hudRow.appendChild(runningWrapper);
+    hudRow.appendChild(brandPill);
+    shell.appendChild(hudRow);
   }
-});
 
-function cotizador(){
-  window.location.href = "/gamepad-tester/cotizador.html";
-}
+  const instructions = document.querySelector('.instructions');
+  const gamepads = document.getElementById('gamepads');
+  const scope = document.getElementById('oscilloscope');
+  if (shell && instructions) shell.appendChild(instructions);
+  if (shell && gamepads) shell.appendChild(gamepads);
+  if (shell && scope) shell.appendChild(scope);
+
+  const footerTag = document.createElement('div');
+  footerTag.className = 'footer-tag';
+  footerTag.textContent = 'Pixel Ortiz Tech';
+  if (shell) shell.appendChild(footerTag);
+
+  document.querySelector('.banner')?.remove();
+  document.querySelector('div[style*="max-width: 1200px; height: 420px"]')?.remove();
+  document.querySelector('button#cotizar')?.parentElement?.remove();
+  document.querySelector('h3')?.parentElement?.remove();
+
+  const legacyHeading = Array.from(document.querySelectorAll('h1')).find((element) =>
+    element.textContent.trim().toUpperCase() === 'EL TALLER DE ALEX'
+  );
+  legacyHeading?.parentElement?.remove();
+
+  const connectLabel = document.getElementById('conectar');
+  if (connectLabel) {
+    connectLabel.textContent = 'Conecta un gamepad para comenzar.';
+  }
+
+  updateTrackingStatusMessage();
+});
 
 function addGamepad(gamepad) {
   //ETA. Se agrega después de el evento Connected
@@ -551,6 +913,10 @@ function addGamepad(gamepad) {
   const accesskey="RUwgVEFMTEVSIERFIExBTEVY"
   const axesElem = elem.querySelector('.axes');
   const buttonsElem = elem.querySelector('.buttons');
+  const visual = elem.querySelector('svg');
+  if (visual) {
+    visual.classList.add('controller-visual');
+  }
 
   const axes = [];
   for (let ndx = 0; ndx < gamepad.axes.length; ndx += 2) {
@@ -571,6 +937,7 @@ function addGamepad(gamepad) {
     buttonsElem.appendChild(div);
     div.querySelector('.index').textContent = ndx;
     buttons.push({
+      wrapper: div,
       circle: div.querySelector('.button'),
       value: div.querySelector('.value'),
     });
@@ -627,17 +994,82 @@ function handleDisconnect(e) {
   removeGamepad(e.gamepad);
 }
 
-const t = String.fromCharCode(0x26AA);
-const f = String.fromCharCode(0x26AB);
-function onOff(v) {
-  return v ? t : f;
+const keys = ['index', 'id', 'connected', 'mapping', 'timestamp'];
+
+function syncPreferredGamepads() {
+  const preferredGamepads = getPreferredGamepads();
+  const preferredIndexes = new Set(preferredGamepads.map((gamepad) => gamepad.index));
+
+  Object.keys(gamepadsByIndex).forEach((index) => {
+    if (!preferredIndexes.has(Number(index))) {
+      removeGamepad({ index: Number(index) });
+    }
+  });
+
+  preferredGamepads.forEach(addGamepadIfNew);
+  return preferredGamepads;
 }
 
-const keys = ['index', 'id', 'connected', 'mapping', 'timestamp'];
+function renderControllerVisual(info) {
+  const gamepad = info.gamepad;
+  const scope = info.elem;
+  const leftStick = scope.querySelector('#LeftStick');
+  const rightStick = scope.querySelector('#RightStick');
+  const LT = scope.querySelector('#L2');
+  const RT = scope.querySelector('#R2');
+  const LB = scope.querySelector('#L1');
+  const RB = scope.querySelector('#R1');
+  const Up = scope.querySelector('#DUp');
+  const Down = scope.querySelector('#DDown');
+  const DLeft = scope.querySelector('#DLeft');
+  const DRight = scope.querySelector('#DRight');
+  const BUp = scope.querySelector('#BTop');
+  const BDown = scope.querySelector('#BBottom');
+  const BLeft = scope.querySelector('#BLeft');
+  const BRight = scope.querySelector('#BRight');
+  const LMeta = scope.querySelector('#LMeta');
+  const RMeta = scope.querySelector('#RMeta');
+
+  leftStick.setAttribute('cx', 112 + gamepad.axes[0] * 10.5);
+  leftStick.setAttribute('cy', 160 + gamepad.axes[1] * 10.5);
+  const leftStrength = Math.max(Math.abs(gamepad.axes[0]), Math.abs(gamepad.axes[1]));
+  leftStick.setAttribute("fill", "rgba(80,180,255," + (0.2 + leftStrength * 0.8) + ")");
+  leftStick.setAttribute("stroke", "rgba(180,230,255," + (0.5 + leftStrength * 0.5) + ")");
+  leftStick.style.filter = leftStrength > 0.08 ? "drop-shadow(0 0 " + (8 + leftStrength * 18) + "px rgba(80,180,255,0.95))" : "none";
+
+  rightStick.setAttribute('cx', 278 + gamepad.axes[2] * 10.5);
+  rightStick.setAttribute('cy', 238 + gamepad.axes[3] * 10.5);
+  const rightStrength = Math.max(Math.abs(gamepad.axes[2]), Math.abs(gamepad.axes[3]));
+  rightStick.setAttribute("fill", "rgba(80,180,255," + (0.2 + rightStrength * 0.8) + ")");
+  rightStick.setAttribute("stroke", "rgba(180,230,255," + (0.5 + rightStrength * 0.5) + ")");
+  rightStick.style.filter = rightStrength > 0.08 ? "drop-shadow(0 0 " + (8 + rightStrength * 18) + "px rgba(80,180,255,0.95))" : "none";
+
+  setSvgButtonState(LT, gamepad.buttons[6]?.value || 0, "rgba(255,145,64,1)");
+  setSvgButtonState(RT, gamepad.buttons[7]?.value || 0, "rgba(255,145,64,1)");
+  setSvgButtonState(LB, gamepad.buttons[4]?.value || 0, "rgba(130,245,255,1)");
+  setSvgButtonState(RB, gamepad.buttons[5]?.value || 0, "rgba(130,245,255,1)");
+  setSvgButtonState(Up, gamepad.buttons[12]?.value || 0, "rgba(80,180,255,1)");
+  setSvgButtonState(Down, gamepad.buttons[13]?.value || 0, "rgba(80,180,255,1)");
+  setSvgButtonState(DLeft, gamepad.buttons[14]?.value || 0, "rgba(80,180,255,1)");
+  setSvgButtonState(DRight, gamepad.buttons[15]?.value || 0, "rgba(80,180,255,1)");
+  setSvgButtonState(BUp, gamepad.buttons[3]?.value || 0, "rgba(255,210,70,1)");
+  setSvgButtonState(BDown, gamepad.buttons[0]?.value || 0, "rgba(75,225,120,1)");
+  setSvgButtonState(BLeft, gamepad.buttons[2]?.value || 0, "rgba(80,165,255,1)");
+  setSvgButtonState(BRight, gamepad.buttons[1]?.value || 0, "rgba(255,95,95,1)");
+  setSvgButtonState(LMeta, gamepad.buttons[8]?.value || 0, "rgba(190,140,255,1)");
+  setSvgButtonState(RMeta, gamepad.buttons[9]?.value || 0, "rgba(190,140,255,1)");
+}
 
 function processController(info) {
   const {elem, gamepad, axes, buttons} = info;
-  const lines = [`gamepad  : ${gamepad.index}`];
+  const axesSection = elem.querySelector('.axes-container');
+  const buttonsSection = elem.querySelector('.buttons');
+  if (axesSection) {
+    axesSection.style.display = trackingEnabled ? 'flex' : 'none';
+  }
+  if (buttonsSection) {
+    buttonsSection.style.display = trackingEnabled ? 'block' : 'none';
+  }
   for (const key of keys) {
     info[key].textContent = gamepad[key];
   }
@@ -665,40 +1097,63 @@ try {
 }
 
 
-  axes.forEach(({axis, value}, ndx) => {
-    const off = ndx * 2;
-    axis.setAttributeNS(null, 'cx', gamepad.axes[off    ] * fudgeFactor);
-    axis.setAttributeNS(null, 'cy', gamepad.axes[off + 1] * fudgeFactor);
-    value.textContent = `${gamepad.axes[off].toFixed(decimalPlaces).padStart(5)},${gamepad.axes[off + 1].toFixed(decimalPlaces).padStart(5)}`;
-  });
-  buttons.forEach(({circle, value}, ndx) => {
-    const button = gamepad.buttons[ndx];
-    circle.setAttributeNS(null, 'r', button.value * fudgeFactor);
-    circle.setAttributeNS(null, 'fill', button.pressed ? 'black' : 'gray');
-    value.textContent = `${button.value.toFixed(2)}`;
-  });
-
-
+  if (trackingEnabled) {
+    axes.forEach(({axis, value}, ndx) => {
+      const off = ndx * 2;
+      axis.setAttributeNS(null, 'cx', gamepad.axes[off    ] * fudgeFactor);
+      axis.setAttributeNS(null, 'cy', gamepad.axes[off + 1] * fudgeFactor);
+      const axisStrength = Math.max(Math.abs(gamepad.axes[off]), Math.abs(gamepad.axes[off + 1]));
+      axis.setAttributeNS(null, 'r', 0.15 + axisStrength * 0.18);
+      axis.setAttributeNS(null, 'fill', `rgba(80,180,255,${0.5 + axisStrength * 0.5})`);
+      axis.style.filter = axisStrength > 0.08 ? `drop-shadow(0 0 ${6 + axisStrength * 12}px rgba(80,180,255,0.95))` : 'none';
+      value.textContent = `${gamepad.axes[off].toFixed(decimalPlaces).padStart(5)},${gamepad.axes[off + 1].toFixed(decimalPlaces).padStart(5)}`;
+    });
+    buttons.forEach(({wrapper, circle, value}, ndx) => {
+      const button = gamepad.buttons[ndx];
+      const glowColor = buttonColor(ndx, button.pressed, button.value);
+      circle.setAttributeNS(null, 'r', 0.25 + button.value * 1.55);
+      circle.setAttributeNS(null, 'fill', glowColor);
+      circle.setAttributeNS(null, 'stroke', 'rgba(255,255,255,0.55)');
+      wrapper.classList.toggle('button-active', button.pressed || button.value > 0.05);
+      value.textContent = `${button.value.toFixed(2)}`;
+      value.setAttributeNS(null, 'fill', button.pressed || button.value > 0.05 ? '#ffffff' : '#b9c5d6');
+    });
+  }
+  renderControllerVisual(info);
 }
 
 function addNewPads() {
-  const gamepads = navigator.getGamepads();
-  for (let i = 0; i < gamepads.length; i++) {
-    const gamepad = gamepads[i]
-    if (gamepad) {
-      addGamepadIfNew(gamepad);
-    }
-  }
+  const preferredGamepads = syncPreferredGamepads();
+  gamepadConnected = preferredGamepads.length > 0;
+  updateTrackingStatusMessage();
+}
+
+function handleConnect(e) {
+  console.log('connect');
+  gamepadConnected = true;
+  syncPreferredGamepads();
+  updateTrackingStatusMessage();
+}
+
+function handleDisconnect(e) {
+  console.log('disconnect');
+  removeGamepad(e.gamepad);
+  gamepadConnected = getPreferredGamepads().length > 0;
+  syncPreferredGamepads();
+  updateTrackingStatusMessage();
 }
 
 window.addEventListener("gamepadconnected", handleConnect);
 window.addEventListener("gamepaddisconnected", handleDisconnect);
 
 function process() {
-  runningElem.textContent = ((performance.now() * 0.001 * 60 | 0) % 100).toString().padStart(2, '0');
+  runningElem.textContent = trackingEnabled
+    ? ((performance.now() * 0.001 * 60 | 0) % 100).toString().padStart(2, '0')
+    : 'OFF';
   addNewPads();
-
-  Object.values(gamepadsByIndex).forEach(processController);
+  if (trackingEnabled) {
+    Object.values(gamepadsByIndex).forEach(processController);
+  }
   requestAnimationFrame(process);
 }
 requestAnimationFrame(process);
@@ -707,113 +1162,6 @@ requestAnimationFrame(process);
 </script>
 
 <script>
-    function updateGamepadDisplay() {
-      const gamepads = navigator.getGamepads();
-      if (!gamepads) return;
-
-      const gamepad = gamepads[0];
-      if (!gamepad) return;
-
-      // JOYSTICKS - ETA
-      const leftStick = document.getElementById('LeftStick');
-      const rightStick = document.getElementById('RightStick');
-
-      leftStick.setAttribute('cx', 112 + gamepad.axes[0] * 10.5);
-      leftStick.setAttribute('cy', 160 + gamepad.axes[1] * 10.5);
-
-      //ETA - COLOR IZQ
-      const fx = Math.max(Math.abs(gamepad.axes[0]),Math.abs(gamepad.axes[1]));
-      leftStick.setAttribute("fill","rgba(0,0,0,"+fx+")");
-
-      rightStick.setAttribute('cx', 278 + gamepad.axes[2] * 10.5);
-      rightStick.setAttribute('cy', 238 + gamepad.axes[3] * 10.5);
-
-      //ETA - COLOR DER
-      const fD = Math.max(Math.abs(gamepad.axes[2]),Math.abs(gamepad.axes[3]));
-      rightStick.setAttribute("fill","rgba(0,0,0,"+fD+")");
-
-      //ETA - GATILLOS
-      const LT = document.getElementById('L2');
-      LTv = gamepad.buttons[6].value
-      LT.setAttribute('fill',"rgba(1,1,1,"+LTv+")");
-
-      const RT = document.getElementById('R2');
-      RTv = gamepad.buttons[7].value
-      RT.setAttribute('fill',"rgba(1,1,1,"+RTv+")");
-
-      //ETA - BUMPERS
-      const LB = document.getElementById('L1');
-      LBv = gamepad.buttons[4].value
-      LB.setAttribute('fill',"rgba(1,1,1,"+LBv+")");
-
-      const RB = document.getElementById('R1');
-      RBv = gamepad.buttons[5].value
-      RB.setAttribute('fill',"rgba(1,1,1,"+RBv+")");
-
-
-      //ETA - CRUZ DPAD
-      const Up = document.getElementById('DUp');
-      Upv = gamepad.buttons[12].value
-      Up.setAttribute('fill',"rgba(1,1,1,"+Upv+")");
-
-      const Down = document.getElementById('DDown');
-      Downv = gamepad.buttons[13].value
-      Down.setAttribute('fill',"rgba(1,1,1,"+Downv+")");
-
-      const DLeft = document.getElementById('DLeft');
-      DLeftv = gamepad.buttons[14].value
-      DLeft.setAttribute('fill',"rgba(1,1,1,"+DLeftv+")");
-
-      const Dright = document.getElementById('DRight');
-      Drightv = gamepad.buttons[15].value
-      Dright.setAttribute('fill',"rgba(1,1,1,"+Drightv+")");
-
-
-      //ETA - BOTONES
-      const BUp = document.getElementById('BTop');
-      BUpv = gamepad.buttons[3].value
-      BUp.setAttribute('fill',"rgba(1,1,1,"+BUpv+")");
-
-      const BDown = document.getElementById('BBottom');
-      BDownv = gamepad.buttons[0].value
-      BDown.setAttribute('fill',"rgba(1,1,1,"+BDownv+")");
-
-      const BLeft = document.getElementById('BLeft');
-      BLeftv = gamepad.buttons[2].value
-      BLeft.setAttribute('fill',"rgba(1,1,1,"+BLeftv+")");
-
-      const Bright = document.getElementById('BRight');
-      Brightv = gamepad.buttons[1].value
-      Bright.setAttribute('fill',"rgba(1,1,1,"+Brightv+")");
-
-
-
-      //ETA - BOTONES  START OPTIONS
-      const Lmeta = document.getElementById('LMeta');
-      Lmetav = gamepad.buttons[8].value
-      Lmeta.setAttribute('fill',"rgba(1,1,1,"+Lmetav+")");
-
-      const Rmeta = document.getElementById('RMeta');
-      Rmetav = gamepad.buttons[9].value
-      Rmeta.setAttribute('fill',"rgba(1,1,1,"+Rmetav+")");
-
-
-    }
-
-    function gameLoop() {
-      updateGamepadDisplay();
-      requestAnimationFrame(gameLoop);
-    }
-
-    window.addEventListener('gamepadconnected', function() {
-      document.getElementById('running').innerText = 'Gamepad Connected';
-      gamepadConnected = true;
-      gameLoop();
-    });
-
-    window.addEventListener('gamepaddisconnected', function() {
-      document.getElementById('running').innerText = 'Gamepad Disconnected';
-    });
 </script>
 
 
@@ -821,24 +1169,9 @@ requestAnimationFrame(process);
 
 
 <script>
-      let gamepadConnected = false;
-
-      //ETA - Evento para detectar cuando un gamepad se conecta
-      window.addEventListener("gamepadconnected", (event) => {
-          gamepadConnected = true;
-          console.log("Gamepad conectado:", event.gamepad);
-      });
-
-      //ETA - Evento para detectar cuando un gamepad se desconecta
-      window.addEventListener("gamepaddisconnected", () => {
-          gamepadConnected = false;
-          console.log("Gamepad desconectado");
-      });
-
-      // ETA -
       function vibrateMotor(motor) {
           if (gamepadConnected) {
-              const gamepad = navigator.getGamepads()[0];
+              const gamepad = getPrimaryGamepad();
 
               if (gamepad && gamepad.vibrationActuator) {
                   const intensity = 1.0;
@@ -871,7 +1204,7 @@ requestAnimationFrame(process);
       function vibrateMotorG(motor) {
 
           if (gamepadConnected) {
-              const gamepad = navigator.getGamepads()[0];
+              const gamepad = getPrimaryGamepad();
 
               if (gamepad && gamepad.vibrationActuator) {
                   const intensity = 1.0;
@@ -904,17 +1237,6 @@ requestAnimationFrame(process);
       }
 
   </script>
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KBX46Z8NT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7KBX46Z8NT');
-</script>
-
 
 </body>
 

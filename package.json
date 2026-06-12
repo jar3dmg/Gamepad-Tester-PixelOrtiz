@@ -1,0 +1,42 @@
+{
+  "name": "gamepad-tester-desktop",
+  "version": "1.0.0",
+  "description": "App de escritorio local para probar gamepads",
+  "author": "Pixel Ortiz Tech",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.digiclife.gamepadtester",
+    "productName": "GT - Pixel Ortiz Tech",
+    "directories": {
+      "output": "dist"
+    },
+    "extraResources": [
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "files": [
+      "main.js",
+      "index.html",
+      "osc.html",
+      "assets/**/*",
+      "static/**/*"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^36.2.1",
+    "electron-builder": "^24.13.3"
+  }
+}
