@@ -1,40 +1,71 @@
-# Gamepad Tester - El Taller de Alex
+# Gamepad Tester - Pixel Ortiz Tech
 
-Este es el Gamepad Tester desarrollado y utilizado en **El Taller de Alex** para probar controles y dispositivos de entrada. Ahora lo hacemos disponible públicamente para que puedas verificar el estado de tus gamepads de forma rápida y sencilla.
+Adaptacion de Gamepad Tester para **Pixel Ortiz Tech**, pensada para probar controles, joysticks y dispositivos de entrada de forma rapida desde Windows.
 
-## Características
+Este proyecto toma como base el trabajo original de **El Taller de Alex**:
 
-- 🎮 Detecta y muestra el estado de los botones, joysticks y triggers en tiempo real.
-- 📊 Muestra datos de eje y valores de presión de botones.
-- 🖥️ Interfaz minimalista y responsiva.
-- ✅ Compatible con la mayoría de los gamepads y joysticks que se conectan nativamente a Windows.
-- 🚫 Sin molestos anuncios y totalmente optimizado.
-- 🔊 *Nuevo:* Prueba de vibración por motor individual para ajustes más precisos.
-- 🔊 *Nuevo:* Prueba de vibración por cada gatillo. _Disponible únicamente en la versión web_.
-- 🔍 *Nuevo:* Opción de cambiar entre 2 y 3 decimales en los valores, ideal para calibración avanzada o debugging técnico.
+https://github.com/alejandro7896/gamepad-tester
 
-## Uso web
+A partir de esa base se adapto la identidad visual, el empaquetado de escritorio y la presentacion para uso de Pixel Ortiz Tech.
 
-👉 [Usalo directamente desde web a un solo click](https://alejandro7896.github.io/gamepad-tester/)
+## Caracteristicas
 
-## ¿Quieres tenerlo en tu PC y no quieres complicarte?
+- Detecta controles compatibles con la API de Gamepad del navegador/Electron.
+- Muestra botones, joysticks, triggers y valores de ejes en tiempo real.
+- Visualiza valores de presion de botones y movimiento de palancas.
+- Incluye pruebas de vibracion para controles compatibles.
+- Interfaz adaptada con marca Pixel Ortiz Tech.
+- Version portable para Windows empaquetada como archivo `.exe`.
+- Sin anuncios y lista para uso local en taller o mostrador.
 
-Si no quieres batallar con la conexión a internet en cada uso, puedes descargar nuestra versión para **Windows**. Es el mismo código, únicamente empaquetado en un ejecutable .exe:
+## Descargar para Windows
 
-👉 [Descargar desde El Taller de Alex](https://www.eltallerdealex.com.mx/gamepad_tester)
+Puedes descargar la version portable desde la seccion **Releases** del repositorio:
 
-¡Es totalmente gratis! Solo necesitas registrarte con un correo electrónico válido para obtener acceso.
+https://github.com/jar3dmg/Gamepad-Tester-PixelOrtiz/releases
 
-## Las actualizaciones son publicadas en el canal de Telegram:
+El archivo principal es:
 
-👉 [Mantente al corriente de las actualizaciones (Grupo de Telegram)](https://t.me/GamepadTester)
+```text
+GT - Pixel Ortiz Tech 1.0.0.exe
+```
 
-## Para desarrolladores
+No requiere instalacion. Solo descarga el ejecutable y abrelo en Windows.
 
-Puedes clonar el repositorio y simplemente abrir el archivo `index.html` en tu navegador favorito.
+## Uso local desde codigo
+
+Si quieres ejecutar el proyecto desde el codigo fuente:
 
 ```bash
-git clone https://github.com/alejandro7896/gamepad-tester.git
-cd gamepad-tester
-index.html
+git clone https://github.com/jar3dmg/Gamepad-Tester-PixelOrtiz.git
+cd Gamepad-Tester-PixelOrtiz
+npm install
+npm start
 ```
+
+Tambien puedes abrir `index.html` directamente en un navegador, aunque la version recomendada para escritorio es Electron.
+
+## Crear ejecutable
+
+Para generar nuevamente el `.exe` portable:
+
+```bash
+npm install
+npm run build
+```
+
+El ejecutable se genera en:
+
+```text
+dist/GT - Pixel Ortiz Tech 1.0.0.exe
+```
+
+## Creditos
+
+Este proyecto fue adaptado por **Pixel Ortiz Tech** usando como base el Gamepad Tester de **El Taller de Alex**.
+
+Proyecto base:
+
+https://github.com/alejandro7896/gamepad-tester
+
+Se mantiene el reconocimiento al autor original por la herramienta base y se publica esta version como una adaptacion personalizada para Pixel Ortiz Tech.
